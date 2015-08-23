@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>blake2s-net</id>
+        <version>0.1.0</version>
+        <authors>Christian Hermann</authors>
+        <owners>Christian Hermann</owners>
+        <licenseUrl>https://github.com/bitbeans/blake2s-net/blob/master/LICENSE.md</licenseUrl>
+        <projectUrl>https://github.com/bitbeans/blake2s-net</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Blake2s .NET</description>
+        <language>en-US</language>
+    </metadata>
+    <files>
+        <file src="blake2s-net\bin\Release\Blake2s.dll" target="lib\net\Blake2s.dll" />
+    </files>
+</package>
