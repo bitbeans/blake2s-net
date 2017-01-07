@@ -1,13 +1,26 @@
 language: csharp
 sudo: false
+
 os:
  - linux
+ 
+env:
+ - TRAVIS_OS_UNAME=$(uname -s)
+
 mono:
   - latest
+  
 solution: blake2s-net.sln
+
+before_install:
+  - mkdir -p .nuget
+  - wget -O .nuget/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+  - mono .nuget/nuget.exe # Output NuGet's version number
+
 install:
-  - nuget restore blake2s-net.sln
-  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+  - mono .nuget/nuget.exe restore blake2s-net.sln -Verbosity detailed
+  - mono .nuget/nuget.exe install NUnit.Runners -Version 3.5.0 -OutputDirectory testrunner
+
 script:
   - xbuild /p:Configuration=Debug blake2s-net.sln
-  - mono --runtime=v4.0 ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Tests/bin/Debug/Tests.dll
+  - mono ./testrunner/NUnit.ConsoleRunner.3.5.0/tools/nunit3-console.exe ./Tests/bin/Debug/Tests.dll
